@@ -1,15 +1,21 @@
 <template>
-  <div>
+  <div class="container">
     Tela de login
     <div id="login-box">
       <form>
-        Usuário
-        <input type="text" name="e-mail" id="">
-        Senha
-        <input type="password" name="password" id="">
+        <div class="form">
+          Usuário
+          <input type="text" name="e-mail" id="">
+          Senha
+          <input type="password" name="password" id="">
+        </div>
+        
+        <div id="botoes">
+          <button type="submit">Login</button>
+          <button>Cadastre-se</button>  
+        </div>
 
-        <button type="submit">Login</button>
-        <button>Cadastre-se</button>
+        
       </form>
     </div>
   </div>
@@ -22,5 +28,24 @@ export default {
 </script>
 
 <style>
+
+.container {
+  /* width: 100vw;
+  height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+#login-box {
+  /* width: 50%; */
+}
 
 </style>
