@@ -1,17 +1,23 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Desafio Tech - Blockhub"/>
+    <!-- <HelloWorld msg="Desafio Tech - Blockhub"/> -->
+
+    <!-- Tela de login -->
+    <Login />
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import Login from './components/Login.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // eslint-disable-next-line vue/no-unused-components
+    HelloWorld,
+    Login,
   }
 }
 </script>
