@@ -49,14 +49,14 @@ legend {
 }
 
 button {
-  width: 103px;
-  height: 27px;
+  width: 123px;
+  height: 37px;
   border-radius: 32px; 
   color: #1aafd3;
   background-color: rgba(52,202,219,.1);
   border: 2px solid #1d5c99;
-  font-family: Poppins,sans-serif;
-  font-size: 10px;
+  font-family: Poppins, sans-serif;
+  font-size: 15px;
   cursor: pointer;
   /* letter-spacing: .15rem; */
 }

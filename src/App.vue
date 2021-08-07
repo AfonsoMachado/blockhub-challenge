@@ -5,19 +5,23 @@
 
     <!-- Tela de login -->
     <Login />
+    <Register />
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import Login from './components/Login.vue'
+import Register from './components/Register.vue'
 
 export default {
   name: 'App',
   components: {
     // eslint-disable-next-line vue/no-unused-components
     HelloWorld,
+    // eslint-disable-next-line vue/no-unused-components
     Login,
+    Register,
   }
 }
 </script>
@@ -40,7 +44,8 @@ export default {
 
 body {
     margin: 0;
-    background-color: #0D262D;
+    background-color: #000c1a;
+    /* 0D262D */
     color: #fff;
     height: 100%;
 }
