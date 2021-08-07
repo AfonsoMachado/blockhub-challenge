@@ -4,15 +4,15 @@
     <div id="login-box">
       <form>
         <div class="form">
-          Usuário
+          <legend>E-mail</legend>
           <input type="text" name="e-mail" id="">
-          Senha
+          <legend>Senha</legend>
           <input type="password" name="password" id="">
         </div>
         
         <div id="botoes">
           <button type="submit">Login</button>
-          <button>Cadastre-se</button>  
+          <button type="button">Cadastre-se</button>  
         </div>
 
         
@@ -41,11 +41,39 @@ export default {
 .form {
   display: flex;
   flex-direction: column;
-  
+  /* align-items: ; */
+}
+
+legend {
+  align-self: flex-start;
+}
+
+button {
+  width: 103px;
+  height: 27px;
+  border-radius: 32px; 
+  color: #1aafd3;
+  background-color: rgba(52,202,219,.1);
+  border: 2px solid #1d5c99;
+  font-family: Poppins,sans-serif;
+  font-size: 10px;
+  cursor: pointer;
+  /* letter-spacing: .15rem; */
+}
+
+button:hover {
+  color: #fff;
+  border: 2px solid #fff;
 }
 
 #login-box {
-  /* width: 50%; */
+  width: 30%;
+}
+
+#botoes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5%;
 }
 
 </style>
