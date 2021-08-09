@@ -5,11 +5,22 @@
       <form class="form-login" method="POST" @submit="loginUser">
         <div class="form-container">
           <legend>E-mail</legend>
-          <input type="text" name="email" id="email" value="" v-model="login.email">
+          <input
+            type="text"
+            name="email"
+            id="email"
+            value=""
+            v-model="login.email"
+          />
           <legend>Senha</legend>
-          <input type="password" name="password" id="password" value="" v-model="login.password">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value=""
+            v-model="login.password"
+          />
         </div>
-        
 
         <div id="botoes">
           <button type="submit">Login</button>
@@ -17,8 +28,6 @@
             <button type="button">Cadastre-se</button>
           </router-link>
         </div>
-
-        
       </form>
     </div>
   </div>
@@ -27,17 +36,19 @@
 <script>
 import axios from "axios";
 // eslint-disable-next-line no-unused-vars
-import {baseApiUrl, showError, userKey} from '../global'
+import { baseApiUrl, showError } from "../global";
+
+let tokenAtual = "";
 
 export default {
-  name: 'LoginForm',
+  name: "LoginForm",
   data() {
     return {
       login: {
-         email: '',
-         password: ''
-      }
-    }
+        email: "",
+        password: "",
+      },
+    };
   },
   methods: {
     async loginUser(e) {
@@ -48,29 +59,30 @@ export default {
       // os dados estão sendo identificados corretamente
       const data = {
         email: this.login.email,
-        password: this.login.password
-      }
+        password: this.login.password,
+      };
 
-      const dataJSON = JSON.stringify(data);
-      console.log(dataJSON);
+      // const dataJSON = JSON.stringify(data);
+      // console.log(dataJSON);
 
-      const res = await axios.post(`${baseApiUrl}/login`, data).catch(showError)
-
-
-
-      console.log("asasd", res.status);
-      
-
-
-    }
-  }
-
-}
-
+      const res = await axios
+        .post(`${baseApiUrl}/login`, data)
+        .then((res) => res)
+        .catch(function (error) {
+          if (error.response) {
+            //FAZER O TRATAMENTO DE ERRO
+            console.log(error.response.data.statusCode);
+          }
+        });
+      console.log("RESPOSTA", res);
+      tokenAtual = res.data.access_token;
+      console.log(tokenAtual);
+    },
+  },
+};
 </script>
 
 <style>
-
 .container {
   /* width: 100vw;
   height: 100vh; */
@@ -93,9 +105,9 @@ legend {
 button {
   width: 123px;
   height: 37px;
-  border-radius: 32px; 
+  border-radius: 32px;
   color: #1aafd3;
-  background-color: rgba(52,202,219,.1);
+  background-color: rgba(52, 202, 219, 0.1);
   border: 2px solid #1d5c99;
   font-family: Poppins, sans-serif;
   font-size: 15px;
@@ -117,5 +129,4 @@ button:hover {
   justify-content: space-between;
   margin-top: 5%;
 }
-
 </style>

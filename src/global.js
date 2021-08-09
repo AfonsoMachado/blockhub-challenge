@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-export const userKey = '__access_token';
+export let userKey = '__access_token';
 // Apontando para o backend
 export const baseApiUrl = 'https://api-desafio-blockub.herokuapp.com';
 
