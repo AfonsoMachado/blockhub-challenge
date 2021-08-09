@@ -10,9 +10,13 @@
           <input type="password" name="password" id="">
         </div>
         
+        
+
         <div id="botoes">
           <button type="submit">Login</button>
-          <button type="button">Cadastre-se</button>  
+          <router-link to="/register">
+            <button type="button">Cadastre-se</button>
+          </router-link>
         </div>
 
         

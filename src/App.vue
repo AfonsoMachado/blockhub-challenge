@@ -4,8 +4,11 @@
     <!-- <HelloWorld msg="Desafio Tech - Blockhub"/> -->
 
     <!-- Tela de login -->
-    <Login />
-    <Register />
+    <!-- <Login />
+    <Register /> -->
+
+    <router-view>
+    </router-view>
   </div>
 </template>
 
@@ -21,6 +24,7 @@ export default {
     HelloWorld,
     // eslint-disable-next-line vue/no-unused-components
     Login,
+    // eslint-disable-next-line vue/no-unused-components
     Register,
   }
 }

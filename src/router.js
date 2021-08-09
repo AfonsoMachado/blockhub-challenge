@@ -1,13 +1,23 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+// pagina de cadastro de usuario
 import Register from '@/components/Register';
+// pagian de cadastro de projeto
 import Project from '@/components/Project';
+// pagina de cadastro de horas trabalhadas por projeto
 import Hours from '@/components/Hours';
+// pagina de login
+import Login from '@/components/Login';
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    name: 'login',
+    path: '/',
+    component: Login,
+  },
   {
     name: 'register',
     path: '/register',
