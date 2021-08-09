@@ -14,7 +14,7 @@
         
         
 
-        <div id="botoes">
+        <div id="botao">
           <button type="submit">Cadastrar-se</button>
         </div>
 
@@ -36,7 +36,7 @@ export default {
   width: 30%;
 }
 
-#botoes {
+#botao {
   display: flex;
   justify-content: center;
   margin-top: 5%;

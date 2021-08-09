@@ -2,14 +2,13 @@
   <div class="container">
     Tela de login
     <div id="login-box">
-      <form>
-        <div class="form">
+      <form class="form-login" method="POST" @submit="loginUser">
+        <div class="form-container">
           <legend>E-mail</legend>
-          <input type="text" name="e-mail" id="">
+          <input type="text" name="email" id="email" value="" v-model="login.email">
           <legend>Senha</legend>
-          <input type="password" name="password" id="">
+          <input type="password" name="password" id="password" value="" v-model="login.password">
         </div>
-        
         
 
         <div id="botoes">
@@ -26,9 +25,48 @@
 </template>
 
 <script>
+import axios from "axios";
+// eslint-disable-next-line no-unused-vars
+import {baseApiUrl, showError, userKey} from '../global'
+
 export default {
+  name: 'LoginForm',
+  data() {
+    return {
+      login: {
+         email: '',
+         password: ''
+      }
+    }
+  },
+  methods: {
+    async loginUser(e) {
+      e.preventDefault();
+
+      console.log("dados para login");
+
+      // os dados estão sendo identificados corretamente
+      const data = {
+        email: this.login.email,
+        password: this.login.password
+      }
+
+      const dataJSON = JSON.stringify(data);
+      console.log(dataJSON);
+
+      const res = await axios.post(`${baseApiUrl}/login`, data).catch(showError)
+
+
+
+      console.log("asasd", res.status);
+      
+
+
+    }
+  }
 
 }
+
 </script>
 
 <style>
@@ -42,7 +80,7 @@ export default {
   align-items: center;
 }
 
-.form {
+.form-container {
   display: flex;
   flex-direction: column;
   /* align-items: ; */
