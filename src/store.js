@@ -8,17 +8,18 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: null,
+    // user: null,
     tokenAtual: '',
   },
   mutations: {
-    setUser(state, user, token) {
-      state.user = user;
-      if (user) {
+    setAtualToken(state, token) {
+      state.tokenAtual = token;
+      if (token) {
         axios.defaults.headers.common['Authorization'] = `bearer ${token}`;
       } else {
         delete axios.defaults.headers.common['Authorization'];
       }
+      console.log('TOKEN ARMAZENADO: ', state.tokenAtual);
     },
   },
 });

@@ -25,7 +25,7 @@
         <div id="botoes">
           <!-- COMO MUDAR DE TELA SÓ DEPOIS QUE LOGAR? -->
           <!-- <router-link to="/project"> -->
-          <button type="submit">Login</button>
+          <button type="submit" @click="loginUser">Login</button>
           <!-- </router-link> -->
           <router-link to="/register">
             <button type="button">Cadastre-se</button>
@@ -69,6 +69,10 @@ export default {
       const res = await axios
         .post(`${baseApiUrl}/login`, data)
         .then((res) => {
+          // mandando o token atual para o arquivo global de store
+          this.$store.commit("setAtualToken", res.data.access_token);
+          // Persistindo no local storage
+          // localStorage.setItem(token, JSON.stringify(res.data));
           // navega para a pagina de projetos em caso de login corretamente
           this.$router.push({ path: "/project" });
           return res;
