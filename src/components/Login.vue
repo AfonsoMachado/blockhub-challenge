@@ -23,7 +23,10 @@
         </div>
 
         <div id="botoes">
+          <!-- COMO MUDAR DE TELA SÓ DEPOIS QUE LOGAR? -->
+          <!-- <router-link to="/project"> -->
           <button type="submit">Login</button>
+          <!-- </router-link> -->
           <router-link to="/register">
             <button type="button">Cadastre-se</button>
           </router-link>
@@ -54,8 +57,6 @@ export default {
     async loginUser(e) {
       e.preventDefault();
 
-      console.log("dados para login");
-
       // os dados estão sendo identificados corretamente
       const data = {
         email: this.login.email,
@@ -78,6 +79,7 @@ export default {
       tokenAtual = res.data.access_token;
       console.log(tokenAtual);
     },
+    validatingUser() {},
   },
 };
 </script>
