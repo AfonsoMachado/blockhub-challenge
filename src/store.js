@@ -20,6 +20,7 @@ export default new Vuex.Store({
         delete axios.defaults.headers.common['Authorization'];
       }
       console.log('TOKEN ARMAZENADO: ', state.tokenAtual);
+      console.log(axios.defaults.headers.common);
     },
   },
 });

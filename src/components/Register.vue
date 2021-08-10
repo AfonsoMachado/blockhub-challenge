@@ -3,7 +3,8 @@
     Cadastro de Usuário
     <div id="register-box">
       <form method="POST" @submit="registerUser">
-        <div class="form">
+        <div class="form-container">
+          <!-- mudar para LABEL -->
           <legend>Nome</legend>
           <input
             type="text"
