@@ -1,5 +1,9 @@
 Tela Cadastro de Usuário - OK
+Tela Cadastro de Projeto - OK
+Login Salvando Token - OK
 
-Tela Cadastro de Projeto
+Deslogar Usuário | Retirar Token - OK
+
+
 Tela Cadastro de Horas por Projeto
-Login
+

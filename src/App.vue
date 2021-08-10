@@ -3,22 +3,24 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Desafio Tech - Blockhub"/> -->
 
+    <Header />
+
     <!-- Tela de login -->
     <!-- <Login />
     <Register /> -->
 
-    <router-view>
-    </router-view>
+    <router-view> </router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import Login from './components/Login.vue'
-import Register from './components/Register.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import Login from "./components/Login.vue";
+import Register from "./components/Register.vue";
+import Header from "./components/Header.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     // eslint-disable-next-line vue/no-unused-components
     HelloWorld,
@@ -26,8 +28,9 @@ export default {
     Login,
     // eslint-disable-next-line vue/no-unused-components
     Register,
-  }
-}
+    Header,
+  },
+};
 </script>
 
 <style>
@@ -37,21 +40,20 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #fff;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 
 /* CONFIGURAÇÕES PADRÃO DO HTML */
 
 /* html {
-    height: 100%;
+  height: 100%;
 } */
 
 body {
-    margin: 0;
-    background-color: #000c1a;
-    /* 0D262D */
-    color: #fff;
-    height: 100%;
+  margin: 0;
+  background-color: #000c1a;
+  /* 0D262D */
+  color: #fff;
+  height: 100%;
 }
-
 </style>
