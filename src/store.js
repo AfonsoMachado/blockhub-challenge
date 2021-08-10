@@ -8,10 +8,24 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    isQuitVisible: false,
     user: null,
     tokenAtual: '',
   },
   mutations: {
+    toggleMenu(state, isVisible) {
+      // Evitar que o menu apareça quando o usuario n estiver setado
+      if (!state.user) {
+        state.isQuitVisible = false;
+        return;
+      }
+
+      if (isVisible === undefined) {
+        state.isQuitVisible = !state.isQuitVisible;
+      } else {
+        state.isQuitVisible = isVisible;
+      }
+    },
     setAtualToken(state, token) {
       state.tokenAtual = token;
       if (token) {
@@ -24,7 +38,7 @@ export default new Vuex.Store({
     },
     setUser(state, user) {
       state.user = user;
-      console.log('USUÁRIO ATUAL ARMAZENADO', state.user);
+      console.log('USUÁRIO ATUAL ARMAZENADO', state.user.data.name);
     },
   },
 });

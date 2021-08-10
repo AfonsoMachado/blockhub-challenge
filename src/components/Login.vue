@@ -68,16 +68,18 @@ export default {
 
       const res = await axios
         .post(`${baseApiUrl}/login`, data)
-        .then((res) => {
+        .then(async (res) => {
           // mandando o token atual para o arquivo global de store
           this.$store.commit("setAtualToken", res.data.access_token);
 
           // buscar o profile atravez do token primeiro
-          // this.$store.commit("setUser");
+          const user = await this.getLoggedUser();
+          this.$store.commit("setUser", user);
           // Persistindo no local storage
           // localStorage.setItem(token, JSON.stringify(res.data));
-          // navega para a pagina de projetos em caso de login corretamente
+          // navega para a pagina de  projetos em caso de login corretamente
           this.$router.push({ path: "/project" });
+          this.$store.commit("toggleMenu", true);
           return res;
         })
         .catch(function (error) {
@@ -89,12 +91,11 @@ export default {
       console.log("RESPOSTA", res);
       tokenAtual = res.data.access_token;
       console.log(tokenAtual);
-      this.getLoggedUser();
     },
     async getLoggedUser() {
-      const user = await axios.get(`${baseApiUrl}/profile`);
+      return await axios.get(`${baseApiUrl}/profile`);
       // usuário sendo buscado da api ok!
-      console.log("VERIFICANDO PERFIL", user.data);
+      // console.log("VERIFICANDO PERFIL", user.data);
     },
   },
 };

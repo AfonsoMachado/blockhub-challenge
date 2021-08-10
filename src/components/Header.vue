@@ -1,12 +1,20 @@
 <template>
   <header id="cabecalho">
     <img src="../assets/logo2.png" alt="" />
-    Sair
+    <div v-if="isQuitVisible">Seja bem vindo {{ user.data.name }}</div>
+    <button v-if="isQuitVisible">
+      <div>Sair</div>
+    </button>
   </header>
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+
+export default {
+  name: "header",
+  computed: mapState(["isQuitVisible", "user"]),
+};
 </script>
 
 <style>
