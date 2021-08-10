@@ -68,7 +68,11 @@ export default {
 
       const res = await axios
         .post(`${baseApiUrl}/login`, data)
-        .then((res) => res)
+        .then((res) => {
+          // navega para a pagina de projetos em caso de login corretamente
+          this.$router.push({ path: "/project" });
+          return res;
+        })
         .catch(function (error) {
           if (error.response) {
             //FAZER O TRATAMENTO DE ERRO
