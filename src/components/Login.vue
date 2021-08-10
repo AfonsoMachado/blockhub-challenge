@@ -71,6 +71,9 @@ export default {
         .then((res) => {
           // mandando o token atual para o arquivo global de store
           this.$store.commit("setAtualToken", res.data.access_token);
+
+          // buscar o profile atravez do token primeiro
+          // this.$store.commit("setUser");
           // Persistindo no local storage
           // localStorage.setItem(token, JSON.stringify(res.data));
           // navega para a pagina de projetos em caso de login corretamente
@@ -86,8 +89,13 @@ export default {
       console.log("RESPOSTA", res);
       tokenAtual = res.data.access_token;
       console.log(tokenAtual);
+      this.getLoggedUser();
     },
-    validatingUser() {},
+    async getLoggedUser() {
+      const user = await axios.get(`${baseApiUrl}/profile`);
+      // usuário sendo buscado da api ok!
+      console.log("VERIFICANDO PERFIL", user.data);
+    },
   },
 };
 </script>

@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // user: null,
+    user: null,
     tokenAtual: '',
   },
   mutations: {
@@ -21,6 +21,10 @@ export default new Vuex.Store({
       }
       console.log('TOKEN ARMAZENADO: ', state.tokenAtual);
       console.log(axios.defaults.headers.common);
+    },
+    setUser(state, user) {
+      state.user = user;
+      console.log('USUÁRIO ATUAL ARMAZENADO', state.user);
     },
   },
 });
