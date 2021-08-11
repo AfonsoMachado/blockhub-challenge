@@ -1,7 +1,21 @@
 <template>
-  <div class="container">
-    Projetos
+  <div class="projects-container">
+    Projetos atuais
     <!-- Listar todos os projetos -->
+    <div class="projects-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TESTE PORRA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -23,6 +37,7 @@ export default {
   },
   methods: {
     async getProjects() {
+      // capturando dados dos projetos da api
       const res = await axios
         .get(`${baseApiUrl}/project`)
         .then((res) => res)
@@ -40,4 +55,12 @@ export default {
 </script>
 
 <style>
+.projects-container {
+  /* width: 100vw;
+  height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 </style>
