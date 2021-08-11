@@ -13,8 +13,8 @@
         <tbody>
           <tr v-for="(project, index) in projects" :key="project._id">
             <td>{{ index }} - {{ project.name }}</td>
-            <td>
-              <strong><a id="link">+</a></strong>
+            <td style="text-align: center; font-size: 20px">
+              <strong><a id="link" @click="addHours">+</a></strong>
             </td>
           </tr>
         </tbody>
@@ -66,6 +66,10 @@ export default {
       console.log("RESPOSTA PROJETOS:", res.data);
       this.projects = res.data;
     },
+
+    async addHours() {
+      console.log("HEHE");
+    },
   },
 };
 </script>
@@ -105,5 +109,9 @@ export default {
 
 #new-project-container {
   margin-top: 30px;
+}
+
+th {
+  text-align: center;
 }
 </style>
