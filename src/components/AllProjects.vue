@@ -26,6 +26,11 @@
         </li>
       </ul> -->
     </div>
+    <div id="new-project-container">
+      <router-link to="/project">
+        <button id="new-project">Cadastrar Novo Projeto</button>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -92,5 +97,13 @@ export default {
 
 #link:hover {
   color: gray;
+}
+
+#new-project {
+  width: 250px;
+}
+
+#new-project-container {
+  margin-top: 30px;
 }
 </style>

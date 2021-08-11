@@ -51,6 +51,7 @@ export default {
       );
 
       console.log("PROJETO NOVO", res);
+      this.$router.push({ path: "/projects" });
     },
   },
 };
