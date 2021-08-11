@@ -19,11 +19,12 @@ export default {
   },
   mounted() {
     // executar quando o componente é renderizada
+    this.getProjects();
   },
   methods: {
     async getProjects() {
       const res = await axios
-        .get(`${baseApiUrl}/profile`)
+        .get(`${baseApiUrl}/project`)
         .then((res) => res)
         .catch((error) => {
           if (error.response) {

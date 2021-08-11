@@ -78,7 +78,7 @@ export default {
           // Persistindo no local storage
           // localStorage.setItem(token, JSON.stringify(res.data));
           // navega para a pagina de  projetos em caso de login corretamente
-          this.$router.push({ path: "/project" });
+          this.$router.push({ path: "/projects" });
           this.$store.commit("toggleMenu", true);
           return res;
         })

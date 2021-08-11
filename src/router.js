@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import Register from '@/components/Register';
 // pagian de cadastro de projeto
 import Project from '@/components/Project';
+import AllProjects from '@/components/AllProjects';
 // pagina de cadastro de horas trabalhadas por projeto
 import Hours from '@/components/Hours';
 // pagina de login
@@ -27,6 +28,11 @@ const routes = [
     name: 'project',
     path: '/project',
     component: Project,
+  },
+  {
+    name: 'projects',
+    path: '/projects',
+    component: AllProjects,
   },
   {
     name: 'hours',
