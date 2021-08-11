@@ -7,14 +7,24 @@
         <thead>
           <tr>
             <th>Nome</th>
+            <th>Cadastrar horas</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>TESTE PORRA</td>
+          <tr v-for="(project, index) in projects" :key="project._id">
+            <td>{{ index }} - {{ project.name }}</td>
+            <td>
+              <strong><a id="link">+</a></strong>
+            </td>
           </tr>
         </tbody>
       </table>
+      <!-- <ul id="example-1">
+        <li>exemplo</li>
+        <li v-for="project in projects" :key="project._id">
+          {{ project.name }}
+        </li>
+      </ul> -->
     </div>
   </div>
 </template>
@@ -49,6 +59,7 @@ export default {
         });
 
       console.log("RESPOSTA PROJETOS:", res.data);
+      this.projects = res.data;
     },
   },
 };
@@ -62,5 +73,24 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.projects-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  text-align: left;
+}
+
+#link {
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#link:hover {
+  color: gray;
 }
 </style>
