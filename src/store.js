@@ -40,5 +40,11 @@ export default new Vuex.Store({
       state.user = user;
       console.log('USUÁRIO ATUAL ARMAZENADO', state.user.data.name);
     },
+    resetState(state) {
+      (state.isQuitVisible = false),
+        (state.user = null),
+        (state.tokenAtual = '');
+      console.log(state.tokenAtual);
+    },
   },
 });

@@ -2,7 +2,7 @@
   <header id="cabecalho">
     <img src="../assets/logo2.png" alt="" />
     <div v-if="isQuitVisible">Seja bem vindo {{ user.data.name }}</div>
-    <button v-if="isQuitVisible">
+    <button v-if="isQuitVisible" @click="quit">
       <div>Sair</div>
     </button>
   </header>
@@ -14,6 +14,18 @@ import { mapState } from "vuex";
 export default {
   name: "header",
   computed: mapState(["isQuitVisible", "user"]),
+  methods: {
+    quit(e) {
+      e.preventDefault();
+
+      // resetando o token
+      // this.$store.commit("setAtualToken", "");
+      // resetando o usuario logado
+      this.$store.commit("resetState");
+      // indo para a pagina inicial
+      this.$router.push({ path: "/" });
+    },
+  },
 };
 </script>
 
