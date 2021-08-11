@@ -12,7 +12,7 @@
 import { mapState } from "vuex";
 
 export default {
-  name: "header",
+  name: "cabecalho",
   computed: mapState(["isQuitVisible", "user"]),
   methods: {
     quit(e) {
