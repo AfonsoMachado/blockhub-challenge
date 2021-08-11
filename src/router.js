@@ -36,7 +36,7 @@ const routes = [
   },
   {
     name: 'hours',
-    path: '/project/hours',
+    path: '/hours',
     component: Hours,
   },
 ];

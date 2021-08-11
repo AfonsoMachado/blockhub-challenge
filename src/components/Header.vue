@@ -1,7 +1,7 @@
 <template>
   <header id="cabecalho">
     <img src="../assets/logo2.png" alt="" />
-    <div v-if="isQuitVisible">Seja bem vindo {{ user.data.name }}</div>
+    <div v-if="isQuitVisible">Seja bem vindo(a) {{ user.data.name }}</div>
     <button v-if="isQuitVisible" @click="quit">
       <div>Sair</div>
     </button>

@@ -68,7 +68,7 @@ export default {
       console.log(data);
 
       const res = await axios.post(`${baseApiUrl}/register`, data);
-
+      this.$router.push({ path: "/" });
       console.log("USUARIO NOVO", res);
     },
   },

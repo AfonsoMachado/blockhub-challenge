@@ -67,8 +67,8 @@ export default {
       this.projects = res.data;
     },
 
-    async addHours() {
-      console.log("HEHE");
+    addHours() {
+      this.$router.push({ path: "/hours" });
     },
   },
 };
