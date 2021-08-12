@@ -61,7 +61,6 @@ export default {
       console.log(data);
 
       // limpa o projeto armazenado
-      this.$store.commit("setProject", null);
 
       const res = await axios
         .post(`${baseApiUrl}/hours`, data)
@@ -74,6 +73,8 @@ export default {
 
       // está funcionando
       console.log("HORAS: ", res.data);
+      this.$router.push({ path: "/projects" });
+      this.$store.commit("setProject", null);
     },
   },
 };

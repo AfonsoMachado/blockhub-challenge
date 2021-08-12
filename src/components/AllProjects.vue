@@ -51,10 +51,10 @@ export default {
       hours: [],
     };
   },
-  mounted() {
+  async mounted() {
     // executar quando o componente é renderizada
-    this.getProjects();
-    this.getHours();
+    await this.getProjects();
+    await this.getHours();
   },
   methods: {
     async getProjects() {
