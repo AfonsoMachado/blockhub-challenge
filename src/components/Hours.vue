@@ -28,7 +28,9 @@
 </template>
 
 <script>
+import axios from "axios";
 import { mapState } from "vuex";
+import { baseApiUrl } from "../global";
 
 export default {
   name: "Hours",
@@ -48,14 +50,30 @@ export default {
     async cadHours(e) {
       e.preventDefault();
 
+      // dados para efetua o cadastramento das horas no sistema
       const data = {
         hours: parseInt(this.hours.hours),
         day: this.hours.day,
         user: this.user.data._id,
         project: this.projectAtual._id,
       };
-
+      // conferindo os dados recebidos
       console.log(data);
+
+      // limpa o projeto armazenado
+      this.$store.commit("setProject", null);
+
+      const res = await axios
+        .post(`${baseApiUrl}/hours`, data)
+        .then((res) => res)
+        .catch((error) => {
+          if (error.response) {
+            console.log("ERRO: ", error.response.data.statusCode);
+          }
+        });
+
+      // está funcionando
+      console.log("HORAS: ", res.data);
     },
   },
 };
