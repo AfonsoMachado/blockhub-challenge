@@ -4,7 +4,7 @@ import axios from 'axios';
 
 Vue.use(Vuex);
 
-// área de armazenamento, para compartilhar entre os componentes, salva o usuario atual
+// área de armazenamento, para compartilhar entre os componentes
 
 export default new Vuex.Store({
   state: {

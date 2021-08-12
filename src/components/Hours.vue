@@ -2,7 +2,7 @@
   <div class="container">
     Cadastro de horas trabalhadas
 
-    <div>PROJETO X</div>
+    <div>PROJETO {{ projectAtual.name }}</div>
     <div id="hours-box">
       <form action="POST" @submit="cadHours">
         <div class="form-container">
