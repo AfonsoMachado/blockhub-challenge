@@ -14,7 +14,7 @@
         <tbody>
           <tr v-for="(project, index) in projects" :key="project._id">
             <td>{{ index }} - {{ project.name }}</td>
-            <td style="text-align: center">5</td>
+            <td style="text-align: center">{{ hours[index] }} horas</td>
             <td style="text-align: center; font-size: 20px">
               <strong><a id="link" @click="addHours(project)">+</a></strong>
             </td>
@@ -38,11 +38,13 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 // eslint-disable-next-line no-unused-vars
 import { baseApiUrl, showError } from "../global";
 
 export default {
   name: "AllProjects",
+  computed: mapState(["user"]),
   data() {
     return {
       projects: [],
@@ -67,7 +69,7 @@ export default {
           }
         });
 
-      console.log("RESPOSTA PROJETOS:", res.data);
+      console.log("RESPOSTA PROJETOS: ", res.data);
       this.projects = res.data;
     },
 
@@ -90,8 +92,36 @@ export default {
           }
         });
       this.hours = res.data;
-      console.log(res.data);
+      console.log("RESPOSTA HORAS: ", res.data);
+      // calcula o total de horas por compelto
+      this.hours = this.calculateHours();
+
+      //  IMPLEMENTAR CALCULO DO TOTAL DE HORAS POR USUARIO
     },
+    calculateHours() {
+      let totalHoras = [];
+      console.log("USER", this.user.data._id);
+      for (let i = 0; i < this.projects.length; i++) {
+        // console.log(this.projects[i]._id);
+        let total = 0;
+        for (const hour of this.hours) {
+          if (
+            this.projects[i]._id == hour.project &&
+            this.user.data._id == hour.user
+          ) {
+            total += hour.hours;
+          }
+        }
+        console.log("TOTAL POR INDICE: ", total);
+        totalHoras[i] = total;
+      }
+
+      console.log("TOTAL HORAS: ", totalHoras);
+      return totalHoras;
+    },
+    // async getProjectId(id) {
+    //   const projectId = await axios.get(`${baseApiUrl}/hours`)
+    // },
   },
 };
 </script>
