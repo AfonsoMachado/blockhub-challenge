@@ -32,6 +32,8 @@ import { mapState } from "vuex";
 
 export default {
   name: "Hours",
+  // tentando passar dados de um componente para o outros
+  computed: mapState(["projectAtual", "user"]),
   data() {
     return {
       hours: {
@@ -42,7 +44,6 @@ export default {
       },
     };
   },
-  computed: mapState(["isQuitVisible", "user"]),
   methods: {
     async cadHours(e) {
       e.preventDefault();
@@ -51,6 +52,7 @@ export default {
         hours: parseInt(this.hours.hours),
         day: this.hours.day,
         user: this.user.data._id,
+        project: this.projectAtual._id,
       };
 
       console.log(data);

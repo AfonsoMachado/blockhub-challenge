@@ -14,7 +14,7 @@
           <tr v-for="(project, index) in projects" :key="project._id">
             <td>{{ index }} - {{ project.name }}</td>
             <td style="text-align: center; font-size: 20px">
-              <strong><a id="link" @click="addHours">+</a></strong>
+              <strong><a id="link" @click="addHours(project)">+</a></strong>
             </td>
           </tr>
         </tbody>
@@ -67,7 +67,12 @@ export default {
       this.projects = res.data;
     },
 
-    addHours() {
+    addHours(project) {
+      // capturando o projeto corretamente
+      console.log(project);
+      // setando o projeto clicado, para usar o id posteriomente
+      this.$store.commit("setProject", project);
+      // inddo para a pagina de horas
       this.$router.push({ path: "/hours" });
     },
   },

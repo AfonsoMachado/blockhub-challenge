@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     isQuitVisible: false,
     user: null,
+    projectAtual: null,
     tokenAtual: '',
   },
   mutations: {
@@ -45,6 +46,9 @@ export default new Vuex.Store({
         (state.user = null),
         (state.tokenAtual = '');
       console.log(state.tokenAtual);
+    },
+    setProject(state, project) {
+      state.projectAtual = project;
     },
   },
 });
