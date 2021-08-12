@@ -7,12 +7,14 @@
         <thead>
           <tr>
             <th>Nome</th>
+            <th>Horas Trabalhadas</th>
             <th>Cadastrar horas</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(project, index) in projects" :key="project._id">
             <td>{{ index }} - {{ project.name }}</td>
+            <td style="text-align: center">5</td>
             <td style="text-align: center; font-size: 20px">
               <strong><a id="link" @click="addHours(project)">+</a></strong>
             </td>
@@ -44,11 +46,13 @@ export default {
   data() {
     return {
       projects: [],
+      hours: [],
     };
   },
   mounted() {
     // executar quando o componente é renderizada
     this.getProjects();
+    this.getHours();
   },
   methods: {
     async getProjects() {
@@ -75,6 +79,19 @@ export default {
       // inddo para a pagina de horas
       this.$router.push({ path: "/hours" });
     },
+    async getHours() {
+      const res = await axios
+        .get(`${baseApiUrl}/hours`)
+        .then((res) => res)
+        .catch((error) => {
+          if (error.response) {
+            //FAZER O TRATAMENTO DE ERRO
+            console.log(error.response.data.statusCode);
+          }
+        });
+      this.hours = res.data;
+      console.log(res.data);
+    },
   },
 };
 </script>
@@ -87,6 +104,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  margin-top: 30px;
 }
 
 .projects-table {

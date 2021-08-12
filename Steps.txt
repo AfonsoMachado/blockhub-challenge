@@ -3,7 +3,7 @@ Tela Cadastro de Projeto - OK
 Listagem de Projeto - OK
 Login Salvando Token - OK
 Deslogar Usuário | Retirar Token - OK
+Tela Cadastro de Horas por Projeto - OK
 
-
-Tela Cadastro de Horas por Projeto
+Exibir as horas por projeto na tela
 
