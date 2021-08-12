@@ -33,6 +33,7 @@
         <button id="new-project">Cadastrar Novo Projeto</button>
       </router-link>
     </div>
+    <Pie v-if="loaded" :chartdata="chartdata" :labelsdata="labelsdata" />
   </div>
 </template>
 
@@ -41,20 +42,33 @@ import axios from "axios";
 import { mapState } from "vuex";
 // eslint-disable-next-line no-unused-vars
 import { baseApiUrl, showError } from "../global";
+import Pie from "./Chart.vue";
 
 export default {
+  components: { Pie },
   name: "AllProjects",
   computed: mapState(["user"]),
   data() {
     return {
       projects: [],
       hours: [],
+      loaded: false,
+      chartdata: null,
     };
   },
   async mounted() {
     // executar quando o componente é renderizada
     await this.getProjects();
     await this.getHours();
+
+    this.loaded = false;
+    try {
+      this.chartdata = this.hours;
+      this.labelsdata = this.projects;
+      this.loaded = true;
+    } catch (e) {
+      console.error(e);
+    }
   },
   methods: {
     async getProjects() {
