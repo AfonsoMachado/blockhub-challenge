@@ -41,8 +41,6 @@ import axios from "axios";
 // eslint-disable-next-line no-unused-vars
 import { baseApiUrl, showError } from "../global";
 
-let tokenAtual = "";
-
 export default {
   name: "LoginForm",
   data() {
@@ -89,8 +87,6 @@ export default {
           }
         });
       console.log("RESPOSTA", res);
-      tokenAtual = res.data.access_token;
-      console.log(tokenAtual);
     },
     async getLoggedUser() {
       return await axios.get(`${baseApiUrl}/profile`);
