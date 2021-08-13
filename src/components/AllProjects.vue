@@ -72,8 +72,8 @@
           Exportar em PDF
         </button>
       </div>
-      <div id="date-filter">
-        TABELA FILTRANDO POR DATA
+      <div id="date-filter" style="margin-bottom: 50px">
+        FILTRAGEM POR DATA
         <table>
           <thead>
             <tr>
