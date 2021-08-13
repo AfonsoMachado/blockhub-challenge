@@ -1,39 +1,85 @@
 <template>
   <div class="projects-container">
-    Projetos atuais
     <!-- Listar todos os projetos -->
-    <div class="projects-table">
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Horas Trabalhadas</th>
-            <th>Cadastrar horas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(project, index) in projects" :key="project._id">
-            <td>{{ index }} - {{ project.name }}</td>
-            <td style="text-align: center">{{ hours[index] }} horas</td>
-            <td style="text-align: center; font-size: 20px">
-              <strong><a id="link" @click="addHours(project)">+</a></strong>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- <ul id="example-1">
+    <div id="div-left">
+      <div id="container-tables">
+        <div class="projects-table" id="ex">
+          <table>
+            <thead>
+              <tr>
+                <th style="border-left: none">Projeto</th>
+                <th>Horas Trabalhadas</th>
+                <!-- <th style="border-right: none">Cadastrar Horas</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(project, index) in projects" :key="project._id">
+                <td style="border-left: none; font-size: 18px">
+                  {{ project.name }}
+                </td>
+                <td style="text-align: center; font-size: 18px">
+                  {{ hours[index] }} horas
+                </td>
+                <!-- <td
+                style="text-align: center; font-size: 20px; border-right: none"
+              >
+                <strong><a id="link" @click="addHours(project)">+</a></strong>
+              </td> -->
+              </tr>
+            </tbody>
+          </table>
+          <!-- <ul id="example-1">
         <li>exemplo</li>
         <li v-for="project in projects" :key="project._id">
           {{ project.name }}
         </li>
       </ul> -->
+        </div>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th style="border-right: none">Cadastrar Horas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="project in projects" :key="project._id">
+                <td
+                  style="
+                    text-align: center;
+                    font-size: 18px;
+                    border-right: none;
+                  "
+                >
+                  <strong><a id="link" @click="addHours(project)">+</a></strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="new-project-container">
+        <router-link to="/project">
+          <button class="project-button" id="new-project">
+            Cadastrar Novo Projeto
+          </button>
+        </router-link>
+        <button class="project-button" @click="exportXLSX">
+          Exportar em Planilha
+        </button>
+        <button class="project-button" @click="exportPDF">
+          Exportar em PDF
+        </button>
+      </div>
     </div>
-    <div id="new-project-container">
-      <router-link to="/project">
-        <button id="new-project">Cadastrar Novo Projeto</button>
-      </router-link>
-    </div>
-    <Pie v-if="loaded" :chartdata="chartdata" :labelsdata="labelsdata" />
+
+    <Pie
+      v-if="loaded"
+      :chartdata="chartdata"
+      :labelsdata="labelsdata"
+      id="chart"
+    />
   </div>
 </template>
 
@@ -85,6 +131,48 @@ export default {
 
       console.log("RESPOSTA PROJETOS: ", res.data);
       this.projects = res.data;
+    },
+
+    exportXLSX(e) {
+      // exporta para um formato compatível com o excel usando funções do prórpio HTML
+      var a = document.createElement("a");
+      var data_type = "data:application/vnd.ms-excel";
+      var table_div = document.getElementById("ex");
+      var table_html = table_div.outerHTML.replace(/ /g, "%20");
+      console.log(table_html);
+      a.href = data_type + ", " + table_html;
+      a.download = "horas-trabalhadas-por-projeto.xls";
+      a.click();
+      e.preventDefault();
+    },
+
+    exportPDF() {
+      // capturando os dados do projeto armazenados na tabela
+      var sTable = document.getElementById("ex").innerHTML;
+
+      var style = "<style>";
+      style = style + "table {width: 100%;font: 17px Calibri;}";
+      style =
+        style +
+        "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+      style = style + "padding: 2px 3px;text-align: center;}";
+      style = style + "</style>";
+
+      // Cria uma nova janela com a tabela contendo os dados
+      var win = window.open("", "", "height=700,width=700");
+
+      win.document.write("<html><head>");
+      win.document.write("<title>horas-trabalhadas-por-projeto</title>");
+      win.document.write(style);
+      win.document.write("</head>");
+      win.document.write("<body>");
+      win.document.write(sTable);
+      win.document.write("</body></html>");
+
+      win.document.close();
+
+      // Ativa a opção de exportar para pdf
+      win.print();
     },
 
     addHours(project) {
@@ -145,8 +233,8 @@ export default {
   /* width: 100vw;
   height: 100vh; */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
 
   margin-top: 30px;
@@ -177,9 +265,41 @@ export default {
 
 #new-project-container {
   margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+table {
+  border-collapse: collapse;
 }
 
 th {
   text-align: center;
+  border-bottom: 2px solid white;
+}
+
+td,
+th {
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#chart {
+  margin-top: 30px;
+}
+
+.project-button {
+  height: 50px;
+}
+
+#container-tables {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 </style>

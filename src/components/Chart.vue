@@ -40,9 +40,6 @@ export default {
     //   }
     // }
 
-    console.log("NOVO ARRAY", this.usechartdata);
-    console.log("NOVO ARRAY 2", this.uselabelsdata);
-
     this.renderChart({
       labels: this.uselabelsdata.map((project) => project.name),
       datasets: [
