@@ -95,12 +95,16 @@
       </div>
     </div>
 
-    <Pie
-      v-if="loaded"
-      :chartdata="chartdata"
-      :labelsdata="labelsdata"
-      id="chart"
-    />
+    <div id="charts">
+      <Pie
+        v-if="loaded"
+        :chartdata="chartdata"
+        :labelsdata="labelsdata"
+        class="chart"
+      />
+
+      <!-- <Bar v-if="loaded" :monthchartdata="monthchartdata" class="chart" /> -->
+    </div>
   </div>
 </template>
 
@@ -110,9 +114,11 @@ import { mapState } from "vuex";
 // eslint-disable-next-line no-unused-vars
 import { baseApiUrl, showError } from "../global";
 import Pie from "./Chart.vue";
+import Bar from "./BarChart.vue";
 
 export default {
-  components: { Pie },
+  // eslint-disable-next-line vue/no-unused-components
+  components: { Pie, Bar },
   name: "AllProjects",
   computed: mapState(["user"]),
   data() {
@@ -120,22 +126,28 @@ export default {
       projects: [],
       hours: [],
       hoursOb: [],
+      // months: [],
+      monthsTable: [],
       dates: [],
       loaded: false,
       chartdata: null,
+      monthchartdata: null,
     };
   },
   async mounted() {
     // executar quando o componente é renderizada
+
     await this.getProjects();
     await this.getHours();
     this.calculateDate();
+    // this.monthHour();
 
     // Eviando dados para renderizar o gráfico
     this.loaded = false;
     try {
       this.chartdata = this.hours;
       this.labelsdata = this.projects;
+      this.monthchartdata = this.months;
       this.loaded = true;
     } catch (e) {
       console.error(e);
@@ -266,17 +278,63 @@ export default {
         }
         // console.log("TOTAL POR INDICE: ", total);;
       }
-      console.log(this.dates);
+      console.log("DATAS: ", this.dates);
       // for (let i = 0; i < this.dates.length; i++) {
       //   if()
 
       // }
     },
+
+    // monthHour() {
+    //   console.log("TSETYE AERAT TSDTSDSDGS", this.mmmmmmmmmmm);
+    //   for (let i = 0; i < this.dates.length; i++) {
+    //     // capturando mês
+    //     let monthc = this.dates[i].d.split("-")[1];
+    //     monthc = this.getMonth(monthc);
+
+    //     if (this.months.length == 0) {
+    //       console.log("UMA VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    //       let hour = this.dates[i].h;
+    //       this.months.push({ monthc, hour });
+    //     } else {
+    //       for (let j = 0; j < this.months.length; j++) {
+    //         if (this.months[j].month == monthc) {
+    //           this.months[j].hour += this.dates[i].h;
+    //         } else {
+    //           // console.log("1 vez");
+    //           let hour = this.dates[i].h;
+    //           this.months.push({ monthc, hour });
+    //         }
+    //       }
+    //     }
+    //   }
+    //   // console.log("MONTGfffggS: ", this.months);
+    // },
+
     // async getProjectId(id) {
     //   const projectId = await axios.get(`${baseApiUrl}/hours`)
     // },
 
     // verifica as datas disponiveis para o usuario logado
+
+    getMonth(n) {
+      const m = [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Abr",
+        "Mai",
+        "Jun",
+        "Jul",
+        "Ago",
+        "Set",
+        "Out",
+        "Nov",
+        "Dez",
+      ];
+
+      return m[n - 1];
+    },
   },
 };
 </script>
@@ -288,7 +346,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  /* align-items: center; */
 
   margin-top: 30px;
 }
@@ -341,7 +399,7 @@ th {
   padding-right: 10px;
 }
 
-#chart {
+.chart {
   margin-top: 30px;
 }
 
@@ -358,5 +416,10 @@ th {
 
 .date-filter {
   margin-top: 25px;
+}
+
+#charts {
+  display: flex;
+  flex-direction: column;
 }
 </style>
