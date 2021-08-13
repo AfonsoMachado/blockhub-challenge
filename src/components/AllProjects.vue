@@ -28,12 +28,6 @@
               </tr>
             </tbody>
           </table>
-          <!-- <ul id="example-1">
-        <li>exemplo</li>
-        <li v-for="project in projects" :key="project._id">
-          {{ project.name }}
-        </li>
-      </ul> -->
         </div>
         <div>
           <table>
@@ -59,37 +53,45 @@
         </div>
       </div>
 
-      <div id="new-project-container">
+      <div class="new-project-container">
         <router-link to="/project">
           <button class="project-button" id="new-project">
             Cadastrar Novo Projeto
           </button>
         </router-link>
-        <button class="project-button" @click="exportXLSX">
+        <button class="project-button" @click="exportXLSX('ex')">
           Exportar em Planilha
         </button>
-        <button class="project-button" @click="exportPDF">
+        <button class="project-button" @click="exportPDF('ex')">
           Exportar em PDF
         </button>
       </div>
-      <div id="date-filter" style="margin-bottom: 50px">
+      <div class="date-filter" id="ex2" style="margin-bottom: 25px">
         FILTRAGEM POR DATA
-        <table>
+        <table align="center">
           <thead>
             <tr>
-              <th>Data</th>
+              <th style="border-left: none">Data</th>
               <th>Projeto</th>
-              <th>Horas Trabalhadas</th>
+              <th style="border-right: none">Horas Trabalhadas</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="date in dates" :key="date._id">
-              <td>{{ date.d }}</td>
+              <td style="border-left: none">{{ date.d }}</td>
               <td>{{ date.p }}</td>
-              <td>{{ date.h }}</td>
+              <td style="border-right: none">{{ date.h }}</td>
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="new-project-container" style="margin-bottom: 50px">
+        <button class="project-button" @click="exportXLSX('ex2')">
+          Exportar em Planilha
+        </button>
+        <button class="project-button" @click="exportPDF('ex2')">
+          Exportar em PDF
+        </button>
       </div>
     </div>
 
@@ -158,22 +160,22 @@ export default {
       this.projects = res.data;
     },
 
-    exportXLSX(e) {
+    exportXLSX(ex) {
       // exporta para um formato compatível com o excel usando funções do prórpio HTML
       var a = document.createElement("a");
       var data_type = "data:application/vnd.ms-excel";
-      var table_div = document.getElementById("ex");
+      var table_div = document.getElementById(ex);
       var table_html = table_div.outerHTML.replace(/ /g, "%20");
       console.log(table_html);
       a.href = data_type + ", " + table_html;
-      a.download = "horas-trabalhadas-por-projeto.xls";
+      a.download = "relatorio.xls";
       a.click();
-      e.preventDefault();
+      // e.preventDefault();
     },
 
-    exportPDF() {
+    exportPDF(ex) {
       // capturando os dados do projeto armazenados na tabela
-      var sTable = document.getElementById("ex").innerHTML;
+      var sTable = document.getElementById(ex).innerHTML;
 
       var style = "<style>";
       style = style + "table {width: 100%;font: 17px Calibri;}";
@@ -314,7 +316,7 @@ export default {
   width: 250px;
 }
 
-#new-project-container {
+.new-project-container {
   margin-top: 30px;
   display: flex;
   flex-direction: row;
@@ -354,7 +356,7 @@ th {
   align-items: center;
 }
 
-#date-filter {
+.date-filter {
   margin-top: 25px;
 }
 </style>
