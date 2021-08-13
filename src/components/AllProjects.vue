@@ -107,6 +107,7 @@ export default {
     await this.getProjects();
     await this.getHours();
 
+    // Eviando dados para renderizar o gráfico
     this.loaded = false;
     try {
       this.chartdata = this.hours;
