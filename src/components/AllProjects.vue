@@ -72,8 +72,24 @@
           Exportar em PDF
         </button>
       </div>
-      <div id="button-filter">
-        <button style="width: 150px">Filtrar por Data</button>
+      <div id="date-filter">
+        TABELA FILTRANDO POR DATA
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Projeto</th>
+              <th>Horas Trabalhadas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="date in dates" :key="date._id">
+              <td>{{ date.d }}</td>
+              <td>{{ date.p }}</td>
+              <td>{{ date.h }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -101,6 +117,8 @@ export default {
     return {
       projects: [],
       hours: [],
+      hoursOb: [],
+      dates: [],
       loaded: false,
       chartdata: null,
     };
@@ -109,6 +127,7 @@ export default {
     // executar quando o componente é renderizada
     await this.getProjects();
     await this.getHours();
+    this.calculateDate();
 
     // Eviando dados para renderizar o gráfico
     this.loaded = false;
@@ -119,6 +138,8 @@ export default {
     } catch (e) {
       console.error(e);
     }
+
+    console.log("DATAS: ", this.dates);
   },
   methods: {
     async getProjects() {
@@ -198,6 +219,7 @@ export default {
           }
         });
       this.hours = res.data;
+      this.hoursOb = res.data;
       console.log("RESPOSTA HORAS: ", res.data);
       // calcula o total de horas por compelto
       this.hours = this.calculateHours();
@@ -218,16 +240,41 @@ export default {
             total += hour.hours;
           }
         }
-        console.log("TOTAL POR INDICE: ", total);
+        // console.log("TOTAL POR INDICE: ", total);
         totalHoras[i] = total;
       }
 
       console.log("TOTAL HORAS: ", totalHoras);
       return totalHoras;
     },
+    calculateDate() {
+      for (let i = 0; i < this.hoursOb.length; i++) {
+        // console.log(this.projects[i]._id);
+        if (this.user.data._id == this.hoursOb[i].user) {
+          let d = this.hoursOb[i].day;
+          let h = this.hoursOb[i].hours;
+          let p = null;
+          for (let j = 0; j < this.projects.length; j++) {
+            if (this.projects[j]._id == this.hoursOb[i].project) {
+              p = this.projects[j].name;
+            }
+          }
+
+          this.dates.push({ d, h, p });
+        }
+        // console.log("TOTAL POR INDICE: ", total);;
+      }
+      console.log(this.dates);
+      // for (let i = 0; i < this.dates.length; i++) {
+      //   if()
+
+      // }
+    },
     // async getProjectId(id) {
     //   const projectId = await axios.get(`${baseApiUrl}/hours`)
     // },
+
+    // verifica as datas disponiveis para o usuario logado
   },
 };
 </script>
@@ -307,7 +354,7 @@ th {
   align-items: center;
 }
 
-#button-filter {
+#date-filter {
   margin-top: 25px;
 }
 </style>

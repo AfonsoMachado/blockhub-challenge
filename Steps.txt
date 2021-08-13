@@ -8,7 +8,8 @@ Exportar para PDF - OK
 Exportar para Excel - OK
 Exibir as horas por projeto na tela - OK
 Gráfico em Pizza - OK!
+Filtrar por data - OK
 
 -- Editar Perfil
-Filtrar por data
+
 Gráfico da quantidade de horas ao longo dos meses
