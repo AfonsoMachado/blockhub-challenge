@@ -1,24 +1,21 @@
-# blockhub-challenge
+# Controle de Horas Trabalhadas
 
-## Project setup
+Projeto Implementado durante a seleção de estágio para a BlockHub Builders
+
+### Instalação e execução do projeto usando 'yarn'
+
 ```
 yarn install
-```
-
-### Compiles and hot-reloads for development
-```
 yarn serve
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### Instalação e execução do projeto usando 'npm'
 
-### Lints and fixes files
 ```
-yarn lint
+npm install
+npm run serve
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).

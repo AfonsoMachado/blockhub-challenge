@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    Tela de login
+    <div style="font-size: 20px">
+      Sistema para Controle de Horas Trabalhadas
+    </div>
     <div id="login-box">
       <form class="form-login" method="POST" @submit="loginUser">
         <div class="form-container">
@@ -137,8 +139,14 @@ button:hover {
   border: 2px solid #fff;
 }
 
+button:active {
+  color: #308094;
+  background-color: rgba(39, 154, 167, 0.1);
+}
+
 #login-box {
   width: 30%;
+  margin-top: 30px;
 }
 
 #botoes {

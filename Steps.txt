@@ -4,6 +4,11 @@ Listagem de Projeto - OK
 Login Salvando Token - OK
 Deslogar Usuário | Retirar Token - OK
 Tela Cadastro de Horas por Projeto - OK
+Exportar para PDF - OK
+Exportar para Excel - OK
+Exibir as horas por projeto na tela - OK
+Gráfico em Pizza - OK!
 
-Exibir as horas por projeto na tela
-
+-- Editar Perfil
+Filtrar por data
+Gráfico da quantidade de horas ao longo dos meses

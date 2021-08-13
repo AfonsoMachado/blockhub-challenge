@@ -72,6 +72,9 @@
           Exportar em PDF
         </button>
       </div>
+      <div id="button-filter">
+        <button style="width: 150px">Filtrar por Data</button>
+      </div>
     </div>
 
     <Pie
@@ -302,5 +305,9 @@ th {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+#button-filter {
+  margin-top: 25px;
 }
 </style>

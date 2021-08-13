@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    Cadastro de projeto
+    <div style="font-size: 20px">Cadastro de projeto</div>
     <div id="project-box">
       <form method="POST" @submit="cadProject">
-        <div class="form-container">
+        <div class="form-container" style="margin-top: 20px">
           <label for="name">Nome do projeto</label>
           <input
             type="text"
