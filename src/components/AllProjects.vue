@@ -166,7 +166,7 @@ export default {
       var data_type = "data:application/vnd.ms-excel";
       var table_div = document.getElementById(ex);
       var table_html = table_div.outerHTML.replace(/ /g, "%20");
-      console.log(table_html);
+      // console.log(table_html);
       a.href = data_type + ", " + table_html;
       a.download = "relatorio.xls";
       a.click();
