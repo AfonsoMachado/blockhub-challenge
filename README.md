@@ -8,6 +8,7 @@ Projeto Implementado durante a seleção de estágio para a BlockHub Builders
 yarn install
 yarn serve
 ```
+Executando automaticamente em https://localhost:8080, bastando apenas abrir no navegador
 
 ### Instalação e execução do projeto usando 'npm'
 
@@ -15,6 +16,7 @@ yarn serve
 npm install
 npm run serve
 ```
+Executando automaticamente em https://localhost:8080, bastando apenas abrir no navegador
 
 ### Customize configuration
 
