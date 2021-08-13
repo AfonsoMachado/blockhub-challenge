@@ -18,6 +18,3 @@ npm run serve
 ```
 Executando automaticamente em http://localhost:8080/, bastando apenas abrir no navegador
 
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
