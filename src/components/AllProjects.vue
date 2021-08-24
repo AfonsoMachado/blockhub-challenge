@@ -163,7 +163,7 @@ export default {
         .then((res) => res)
         .catch((error) => {
           if (error.response) {
-            //FAZER O TRATAMENTO DE ERRO
+            //FAZER O TRATAMENTO DE ERRO tesete alteração
             console.log(error.response.data.statusCode);
           }
         });
