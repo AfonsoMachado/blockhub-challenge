@@ -18,7 +18,7 @@ export default {
     quit(e) {
       e.preventDefault();
 
-      // resetando o token
+      // resetando o token jk
       // this.$store.commit("setAtualToken", "");
       // resetando o usuario logado
       this.$store.commit("resetState");

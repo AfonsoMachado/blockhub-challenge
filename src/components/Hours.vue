@@ -34,7 +34,7 @@ import { baseApiUrl } from "../global";
 
 export default {
   name: "Hours",
-  // tentando passar dados de um componente para o outros
+  // tentando passar dados de um componente para o outros - só testando
   computed: mapState(["projectAtual", "user"]),
   data() {
     return {
